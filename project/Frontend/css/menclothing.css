@@ -1,0 +1,38 @@
+#nav {
+    width: 99%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    /* position: fixed; */
+    background-color: rgb(41, 37, 37);
+    color: white;
+    padding: 1.5%;
+    font-size: x-large;
+}
+
+#search {
+    padding: 4%;
+}
+
+#sub-nav {
+    width: 99%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    /* position: fixed; */
+    background-color: rgb(69, 65, 65);
+    color: white;
+    padding: 1.5%;
+}
+
+#sort-menu{
+    width: 60%;
+    margin: auto;
+    margin-top: 3%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#sort-menu select{
+    padding: 2%;
+}
