@@ -20,7 +20,7 @@ function getData(event) {
 
     if (flag) {
         async function post(){
-            let url = "http://localhost:8800/";
+            let url = "http://localhost:8800";
             console.log(obj);
             try {
                 let res = await fetch(`${url}/users/register`, {
@@ -33,6 +33,12 @@ function getData(event) {
                 let data = await res.json();
                 console.log(data);
                 console.log("registered");
+
+                setTimeout(()=>{
+                    window.location.href="login.html"
+                },2000);
+
+
             } catch (error) {
                 console.log(error);
             }
@@ -40,7 +46,27 @@ function getData(event) {
         
         post();
 
+    }else{
+        alert("Enter all the fields")
     }
 
 
 }
+
+
+// homepage, women, men
+
+let home = document.querySelector("#brand")
+home.addEventListener("click",()=>{
+    window.location.href="index.html"
+})
+
+let women = document.querySelector("#women")
+women.addEventListener("click",()=>{
+    window.location.href="womenclothing.html"
+})
+
+let men = document.querySelector("#men")
+men.addEventListener("click",()=>{
+    window.location.href="menclothing.html"
+})

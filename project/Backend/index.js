@@ -1,7 +1,9 @@
 const express = require("express");
 const { connection } = require("./configs/db");
-const { userRouter } = require("./routes/user.route")
-const { noteRouter } = require("./routes/note.route")
+const { userRouter } = require("./routes/user.Route")
+const { menRouter } = require("./routes/men.Route")
+const { womenRouter } = require("./routes/women.Route")
+const { cartRouter } = require("./routes/cart.Route")
 const cors = require("cors");
 require("dotenv").config()
 const { authenticate } = require("./middlewares/authenticate.middleware");
@@ -14,16 +16,10 @@ app.get("/", (req, res) => {
 })
 app.use("/users", userRouter);
 app.use(authenticate)
-app.use("/notes", noteRouter);
 
-
-app.get("/about", (req, res) => {
-    res.send("About page");
-})
-
-app.get("/contacts", (req, res) => {
-    res.send("Contacts page");
-})
+app.use("/men", menRouter)
+app.use("/women", womenRouter)
+app.use("/cart", cartRouter)
 
 
 

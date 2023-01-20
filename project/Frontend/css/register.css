@@ -1,51 +1,55 @@
+* {
+    background-color: whitesmoke;
+}
 
-        *{
-            background-color: whitesmoke;
-        }
-        #home {
-            width: 25%;
-            display: flex;
-            margin: auto;
-        }
+#home {
+    width: 25%;
+    display: flex;
+    margin: auto;
+}
 
-        #home:hover{
-            cursor: pointer;
-        }
+#nav>div:hover,
+#sub-nav>div:hover {
+    cursor: pointer;
+}
 
-        a+p{
-            text-align: center;
-            font-size: 20px;
-        }
+#home:hover {
+    cursor: pointer;
+}
 
-        form{
-            display: grid;
-            grid-template-columns: repeat(1,1fr);
-            width: 36%;
-            margin: auto;
-            gap: 8px;
-        }
+a+p {
+    text-align: center;
+    font-size: 20px;
+}
 
-        form>input{
-            padding: 3%;
-            border: 1px solid black;
-            border-radius: 5px;
-            background-color: whitesmoke;
-        }
+form {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 36%;
+    margin: auto;
+    gap: 8px;
+}
 
-        #submit{
-            margin-top: 4%;
-            background-color: black;
-            color: whitesmoke;
-            transition: 0.5s;
-        }
-        #submit:hover{
-            cursor: pointer;
-            transform: scale(1.1);
-        }
+form>input {
+    padding: 3%;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
 
-        p{
-            margin-top: 20px;
-            text-align: center;
-        }
+#submit {
+    margin-top: 4%;
+    background-color: black;
+    color: whitesmoke;
+    transition: 0.5s;
+}
 
-   
+#submit:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+p {
+    margin-top: 20px;
+    text-align: center;
+}

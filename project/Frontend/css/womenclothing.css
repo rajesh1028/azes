@@ -1,3 +1,8 @@
+#nav > div:hover, 
+#sub-nav > div:hover{
+    cursor: pointer;
+}
+
 #nav {
     width: 99%;
     margin: auto;
@@ -8,11 +13,6 @@
     color: white;
     padding: 1.5%;
     font-size: x-large;
-}
-
-#nav > div:hover, 
-#sub-nav > div:hover{
-    cursor: pointer;
 }
 
 #search {
