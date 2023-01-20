@@ -7,17 +7,29 @@ require("dotenv").config();
 const userRouter = express.Router();
 userRouter.use(express.json());
 
+userRouter.get("/", async(req,res)=>{
+    try {
+        let user = await UserModel.find();
+        res.send(user);
+    } catch (error) {
+        console.log(error);
+        res.send(error);
+    }
+})
+
 userRouter.post("/register", async (req, res) => {
-    const { email, pwd, name, age } = req.body
+    const { email, password, name, age } = req.body
 
     try {
-        bcrypt.hash(pwd, 5, async (err, secure_pwd) => {
+        bcrypt.hash(password, 5, async (err, secure_pwd) => {
             if (err) {
                 console.log(err);
             } else {
-                const user = new UserModel({ email, pwd: secure_pwd, name, age });
+                const user = new UserModel({ email, password: secure_pwd, name, age });
                 await user.save()
-                res.send("Registered");
+
+                let userData = await UserModel.find();
+                res.send(userData);
             }
         })
 
@@ -28,13 +40,13 @@ userRouter.post("/register", async (req, res) => {
 })
 
 userRouter.post("/login", async (req, res) => {
-    const { email, pwd } = req.body
+    const { email, password } = req.body
     try {
         const user = await UserModel.find({ email })
-        let hashed_pwd = user[0].pwd
+        let hashed_pwd = user[0].password
         // const user = await UserModel.find({ email: email, pwd: pwd })
         if (user.length > 0) {
-            bcrypt.compare(pwd, hashed_pwd, (err, result) => {
+            bcrypt.compare(password, hashed_pwd, (err, result) => {
                 if (result) {
                     const token = jwt.sign({ userID:user[0]._id }, process.env.key, {expiresIn:'2h'})
                     res.send({ "msg": "Login Successful", "token": token });
