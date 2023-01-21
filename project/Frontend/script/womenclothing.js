@@ -43,6 +43,7 @@ async function getData() {
 getData()
 
 function displayCard(data) {
+    container.innerHTML = null;
     data.forEach((elem, i) => {
         let div = document.createElement("div");
         div.innerHTML = `
@@ -50,45 +51,102 @@ function displayCard(data) {
         <h3>Name : ${elem.name}</h3>
         <p>Price : $ ${elem.price}</p>
         <p>Rating : ${elem.rating}</p>
-        <button onclick="addToCart(${i})" >Add to cart</button>
+        <button>Add to cart</button>
         `
         container.append(div);
     })
 }
 
-function addToCart(i){
-    async function cart(){
-        let payload = userData[i];
-        try {
-            let url = "http://localhost:8800/";
-            let res = await fetch(`${url}cart/create`,{
-                method:"POST",
-                headers:{
-                    "authorization":localStorage.getItem("token")
-                },
-                body:JSON.stringify(payload)
-            })
-            let cartData = await res.json();
-            console.log(cartData);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-}
-
 // homepage, women, men
 
 let home = document.querySelector("#brand")
-home.addEventListener("click",()=>{
-    window.location.href="index.html"
+home.addEventListener("click", () => {
+    window.location.href = "index.html"
 })
 
 let women = document.querySelector("#women")
-women.addEventListener("click",()=>{
-    window.location.href="womenclothing.html"
+women.addEventListener("click", () => {
+    window.location.href = "womenclothing.html"
 })
 
 let men = document.querySelector("#men")
-men.addEventListener("click",()=>{
-    window.location.href="menclothing.html"
+men.addEventListener("click", () => {
+    window.location.href = "menclothing.html"
 })
+
+// sort
+
+document.querySelector("#sort").addEventListener("change", sort);
+document.querySelector("#less_than_50").addEventListener("change", sort);
+document.querySelector("#less_than_80").addEventListener("change", sort);
+document.querySelector("#less_than_100").addEventListener("change", sort);
+document.querySelector("#greater_than_4").addEventListener("change", sort);
+document.querySelector("#greater_than_7").addEventListener("change", sort);
+document.querySelector("#greater_than_9").addEventListener("change", sort);
+
+function sort() {
+    let data = document.querySelector("#sort").value;
+    if (data == "P-LTH") {
+        userData.sort((a, b) => a.price - b.price);
+    } else if (data == "P-HTL") {
+        userData.sort((a, b) => b.price - a.price);
+    } else if (data == "R-LTH") {
+        userData.sort((a, b) => a.rating - b.rating);
+    } else {
+        userData.sort((a, b) => b.rating - a.rating)
+    }
+    displayCard(userData);
+    console.log(userData);
+
+    // filter
+
+    let checkbox1 = document.querySelector("#less_than_50");
+    if (checkbox1.checked) {
+        let data = userData.filter((elem, i) => {
+            return elem.price < 50;
+        })
+        displayCard(data);
+    }
+
+    let checkbox2 = document.querySelector("#less_than_80");
+    if (checkbox2.checked) {
+        let data = userData.filter((elem, i) => {
+            return elem.price < 80;
+        })
+        displayCard(data);
+    }
+
+    let checkbox3 = document.querySelector("#less_than_100");
+    if (checkbox3.checked) {
+        let data = userData.filter((elem, i) => {
+            return elem.price < 100;
+        })
+        displayCard(data);
+    }
+
+    // filter2
+
+    let box1 = document.querySelector("#greater_than_4");
+    if (box1.checked) {
+        let data = userData.filter((elem, i) => {
+            return elem.rating > 4;
+        })
+        displayCard(data);
+    }
+
+    let box2 = document.querySelector("#greater_than_7");
+    if (box2.checked) {
+        let data = userData.filter((elem, i) => {
+            return elem.rating > 7;
+        })
+        displayCard(data);
+    }
+
+    let box3 = document.querySelector("#greater_than_9");
+    if (box3.checked) {
+        let data = userData.filter((elem, i) => {
+            return elem.rating > 9;
+        })
+        displayCard(data);
+    }
+}

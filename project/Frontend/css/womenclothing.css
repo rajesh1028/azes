@@ -245,3 +245,26 @@ right: 0px;
     color: aliceblue;
     border-radius: 5px;
 }
+
+/* sort */
+#sort {
+    display: flex;
+    width: 130%;
+    margin: auto;
+    padding: 5%;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 1.5%;
+}
+
+/* fun */
+#fun{
+    display: flex;
+    width: 99%;
+    margin: auto;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1%;
+    background-color: #adabab;
+    color: whitesmoke;
+}
