@@ -88,28 +88,6 @@ async function addToCart(id) {
     }
 }
 
-// homepage, women, men, cart
-
-let home = document.querySelector("#brand")
-home.addEventListener("click", () => {
-    window.location.href = "index.html"
-})
-
-let women = document.querySelector("#women")
-women.addEventListener("click", () => {
-    window.location.href = "womenclothing.html"
-})
-
-let men = document.querySelector("#men")
-men.addEventListener("click", () => {
-    window.location.href = "menclothing.html"
-})
-
-let cart = document.querySelector("#cart")
-cart.addEventListener("click", () => {
-    window.location.href = "cart.html"
-})
-
 // sort
 
 document.querySelector("#sort").addEventListener("change", sort);
@@ -187,6 +165,47 @@ function sort() {
     }
 }
 
+// homepage, women, men, cart
+
+let access = localStorage.getItem("token");
+if (access) {
+    let women = document.querySelector("#women")
+    women.addEventListener("click", () => {
+        window.location.href = "womenclothing.html"
+    })
+
+    let men = document.querySelector("#men")
+    men.addEventListener("click", () => {
+        window.location.href = "menclothing.html"
+    })
+
+    let cart = document.querySelector("#cart")
+    cart.addEventListener("click", () => {
+        window.location.href = "cart.html"
+    })
+} else {
+    let women = document.querySelector("#women")
+    women.addEventListener("click", () => {
+        alert("Login to continue");
+    })
+
+    let men = document.querySelector("#men")
+    men.addEventListener("click", () => {
+        alert("Login to continue");
+    })
+
+    let cart = document.querySelector("#cart")
+    cart.addEventListener("click", () => {
+        alert("Login to continue");
+    })
+}
+
+let home = document.querySelector("#brand")
+home.addEventListener("click", () => {
+    window.location.href = "index.html"
+})
+
+
 //  register
 
 let register = document.querySelector("#register")
@@ -257,3 +276,21 @@ form.addEventListener("submit",(e)=>{
     }
 
 })
+
+
+// logout
+
+if(localStorage.getItem("token")){
+    let logout = document.querySelector("#logout")
+    logout.addEventListener("click", () => {
+        localStorage.setItem("token", "");
+        localStorage.setItem("user-name", "");
+        alert("User logged out successfully");
+        window.location.href="index.html";
+    })
+}else{
+    let logout = document.querySelector("#logout")
+    logout.addEventListener("click", () => {
+        alert("User has been logged out already");
+    })
+}
