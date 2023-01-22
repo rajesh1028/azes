@@ -1,3 +1,43 @@
+document, addEventListener("click", e => {
+    const isDropdownButton = e.target.matches("[data-dropdown-button]")
+    if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) {
+        return
+    }
+
+    let currentDropdown
+    if (isDropdownButton) {
+        currentDropdown = e.target.closest("[data-dropdown]")
+        currentDropdown.classList.toggle('active')
+    }
+
+    document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
+        if (dropdown === currentDropdown) return
+        dropdown.classList.remove('active')
+    })
+})
+
+// homepage, women, men, cart
+
+let home = document.querySelector("#brand")
+home.addEventListener("click", () => {
+    window.location.href = "index.html"
+})
+
+let women = document.querySelector("#women")
+women.addEventListener("click", () => {
+    window.location.href = "womenclothing.html"
+})
+
+let men = document.querySelector("#men")
+men.addEventListener("click", () => {
+    window.location.href = "menclothing.html"
+})
+
+let cart = document.querySelector("#cart")
+cart.addEventListener("click", () => {
+    window.location.href = "cart.html"
+})
+
 // slide
 let count2 = 0;
 document.querySelector("#ltexarrow").onclick = () => {
@@ -19,6 +59,68 @@ document.querySelector("#rtexarrow").onclick = () => {
     let val = count2 * 260;
     document.querySelector("#explore_container").style.transform = `translateX(-${val}px)`;
 };
+
+// login
+
+let form = document.querySelector("form")
+form.addEventListener("submit",(e)=>{
+    e.preventDefault();
+
+    let obj = {
+        email: form.email.value,
+        password: form.password.value
+    }
+
+    let flag = true;
+    if (obj.email && obj.password) {
+        flag = true;
+    } else {
+        flag = false;
+    }
+
+    if (flag) {
+        async function post() {
+            let url = "http://localhost:8800";
+            //console.log(obj);
+            try {
+                let res = await fetch(`${url}/users/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(obj)
+                })
+                let data = await res.json();
+                //console.log(data);
+                localStorage.setItem("token", data.token)
+                console.log("logged in");
+
+                let user = await fetch(`${url}/users`);
+                let userData = await user.json();
+
+                let result = userData.filter((elem, i) => {
+                    return obj.email == elem.email;
+                })
+
+                localStorage.setItem("user-name", result[0].name)
+
+                setTimeout(() => {
+                    window.location.href = "index.html"
+                }, 2000)
+
+            } catch (error) {
+                console.log(error);
+                console.log("Error in logging in");
+            }
+        }
+
+        post();
+
+    } else {
+        alert("Enter all the details");
+    }
+
+})
 
 // display
 
@@ -51,28 +153,44 @@ function displayCard(data) {
         <h3>Name : ${elem.name}</h3>
         <p>Price : $ ${elem.price}</p>
         <p>Rating : ${elem.rating}</p>
-        <button>Add to cart</button>
+        <button class="butt" value=${elem._id}>Add to cart</button>
         `
         container.append(div);
     })
+
+    let buttons = document.querySelectorAll(".butt");
+    for (let button of buttons) {
+        button.addEventListener("click", () => {
+            addToCart(button.value);
+        })
+    }
+
 }
 
-// homepage, women, men
+// add to cart
 
-let home = document.querySelector("#brand")
-home.addEventListener("click", () => {
-    window.location.href = "index.html"
-})
+async function addToCart(id) {
+    let data = userData.filter((elem, i) => {
+        return elem._id == id;
+    })
+    //console.log(data[0]);
+    try {
+        let res = await fetch("http://localhost:8800/cart/create",{
+            method:"POST",
+            headers:{
+                "content-type":"application/json",
+                "authorization":localStorage.getItem("token")
+            },
+            body:JSON.stringify(data[0])
+        })
+        let out = res.json();
+        //console.log(out);
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-let women = document.querySelector("#women")
-women.addEventListener("click", () => {
-    window.location.href = "womenclothing.html"
-})
 
-let men = document.querySelector("#men")
-men.addEventListener("click", () => {
-    window.location.href = "menclothing.html"
-})
 
 // sort
 
@@ -150,3 +268,11 @@ function sort() {
         displayCard(data);
     }
 }
+
+
+//  register
+
+let register = document.querySelector("#register")
+register.addEventListener("click", () => {
+    window.location.href = "register.html";
+})
