@@ -3,6 +3,7 @@ const { connection } = require("./configs/db");
 const { userRouter } = require("./routes/user.Route")
 const { menRouter } = require("./routes/men.Route")
 const { womenRouter } = require("./routes/women.Route")
+const { cartRouter } = require("./routes/cart.Route");
 const cors = require("cors");
 require("dotenv").config()
 const { authenticate } = require("./middlewares/authenticate.middleware");
@@ -18,6 +19,7 @@ app.use(authenticate)
 
 app.use("/men", menRouter)
 app.use("/women", womenRouter)
+app.use("/cart", cartRouter)
 
 
 app.listen(process.env.port, async () => {
