@@ -1,3 +1,21 @@
+document, addEventListener("click", e => {
+    const isDropdownButton = e.target.matches("[data-dropdown-button]")
+    if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) {
+        return
+    }
+
+    let currentDropdown
+    if (isDropdownButton) {
+        currentDropdown = e.target.closest("[data-dropdown]")
+        currentDropdown.classList.toggle('active')
+    }
+
+    document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
+        if (dropdown === currentDropdown) return
+        dropdown.classList.remove('active')
+    })
+})
+
 let form = document.querySelector("form")
 form.addEventListener("submit", getData)
 
@@ -62,7 +80,7 @@ function getData(event) {
 }
 
 
-// homepage, women, men
+// // homepage, women, men, cart
 
 let home = document.querySelector("#brand")
 home.addEventListener("click",()=>{
@@ -77,4 +95,16 @@ women.addEventListener("click",()=>{
 let men = document.querySelector("#men")
 men.addEventListener("click",()=>{
     window.location.href="menclothing.html"
+})
+
+let cart = document.querySelector("#cart")
+cart.addEventListener("click", () => {
+    window.location.href = "cart.html"
+})
+
+//  register
+
+let register = document.querySelector("#register")
+register.addEventListener("click",()=>{
+    window.location.href="register.html";
 })

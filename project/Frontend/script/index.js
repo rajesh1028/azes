@@ -16,21 +16,26 @@ document, addEventListener("click", e => {
     })
 })
 
-// homepage, women, men
+// homepage, women, men, cart
 
 let home = document.querySelector("#brand")
-home.addEventListener("click",()=>{
-    window.location.href="index.html"
+home.addEventListener("click", () => {
+    window.location.href = "index.html"
 })
 
 let women = document.querySelector("#women")
-women.addEventListener("click",()=>{
-    window.location.href="womenclothing.html"
+women.addEventListener("click", () => {
+    window.location.href = "womenclothing.html"
 })
 
 let men = document.querySelector("#men")
-men.addEventListener("click",()=>{
-    window.location.href="menclothing.html"
+men.addEventListener("click", () => {
+    window.location.href = "menclothing.html"
+})
+
+let cart = document.querySelector("#cart")
+cart.addEventListener("click", () => {
+    window.location.href = "cart.html"
 })
 
 // slide
@@ -56,15 +61,15 @@ document.querySelector("#rtexarrow").onclick = () => {
 };
 
 // welcome
-let user_name=localStorage.getItem("user-name");
-if(user_name){
+let user_name = localStorage.getItem("user-name");
+if (user_name) {
     let welcome = document.querySelector("#welcome")
-    welcome.innerHTML=`
+    welcome.innerHTML = `
     <h2>Welcome back! MR/MS : ${user_name} </h2>
     `
-}else{
+} else {
     let welcome = document.querySelector("#welcome")
-    welcome.innerHTML=`
+    welcome.innerHTML = `
     <h2>Login to continue shopping</h2>
     `
 }
@@ -91,7 +96,7 @@ function getData(event) {
     }
 
     if (flag) {
-        async function post(){
+        async function post() {
             let url = "http://localhost:8800";
             //console.log(obj);
             try {
@@ -104,33 +109,40 @@ function getData(event) {
                 })
                 let data = await res.json();
                 //console.log(data);
-                localStorage.setItem("token",data.token)
+                localStorage.setItem("token", data.token)
                 console.log("logged in");
 
                 let user = await fetch(`${url}/users`);
                 let userData = await user.json();
 
-                let result = userData.filter((elem,i)=>{
-                    return obj.email==elem.email;
+                let result = userData.filter((elem, i) => {
+                    return obj.email == elem.email;
                 })
 
-                localStorage.setItem("user-name",result[0].name)
+                localStorage.setItem("user-name", result[0].name)
 
-                setTimeout(()=>{
-                    window.location.href="index.html"
-                },2000)
+                setTimeout(() => {
+                    window.location.href = "index.html"
+                }, 2000)
 
             } catch (error) {
                 console.log(error);
                 console.log("Error in logging in");
             }
         }
-        
+
         post();
 
-    }else{
+    } else {
         alert("Enter all the details");
     }
 
 
 }
+
+//  register
+
+let register = document.querySelector("#register")
+register.addEventListener("click", () => {
+    window.location.href = "register.html";
+})

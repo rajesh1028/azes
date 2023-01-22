@@ -7,12 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup Page</title>
     <link rel="stylesheet" href="./css/register.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
 <body>
+    <div id="nav">
+        <div id="brand">AZES</div>
+        <div id="women">Women</div>
+        <div id="men">Men</div>
+        <div><input type="text" id="search"></div>
+        <div class="dropdown" data-dropdown>
+            <button class="link" data-dropdown-button>Login</button>
+            <div class="dropdown-menu">
+                <form class="login-form">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+        <div id="register"><span class="material-symbols-outlined">
+                person
+            </span></div>
+        <div id="cart"><span class="material-symbols-outlined">
+                shopping_cart
+            </span></div>
+    </div>
+    
     <a href="index.html"><img id="home" src="./images/azes.crop.png" alt=""></a>
     <p>Get Started for FREE</p>
-    <form>
+    <form id="form">
         Name
         <input type="text" placeholder="Name" id="name">
         Email
@@ -23,7 +50,8 @@
         <input type="number" placeholder="Enter age" id="age">
         <input id="submit" type="submit" value="SIGN UP">
     </form>
-    <p>Already have an account?  <a href="signin.html">Sign In</a></p>
+    <p>Already have an account? <a href="login.html">Sign In</a></p>
 </body>
 <script src="./script/register.js"></script>
+
 </html>
