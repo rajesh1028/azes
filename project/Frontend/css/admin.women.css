@@ -1,0 +1,162 @@
+#nav {
+    width: 99%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    /* position: fixed; */
+    background-color: rgb(41, 37, 37);
+    color: white;
+    padding: 1.5%;
+    font-size: x-large;
+}
+
+#nav>div:hover,
+#sub-nav>div:hover {
+    cursor: pointer;
+}
+
+#search {
+    padding: 4%;
+}
+
+#sub-nav {
+    width: 99%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    /* position: fixed; */
+    background-color: rgb(69, 65, 65);
+    color: white;
+    padding: 1.5%;
+}
+
+/*  */
+
+body {
+    margin: 0;
+}
+
+.header {
+    background-color: whitesmoke;
+    display: flex;
+    align-items: baseline;
+    padding: .5rem;
+    gap: 1rem;
+}
+
+.link {
+    border: 0ch;
+    background: none;
+    text-decoration: none;
+    color: gray;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    padding: 0;
+}
+
+.dropdown.active>.link,
+.link:hover {
+    color: black;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    left: 0;
+    top: calc(100% + .25rem);
+    background-color: white;
+    color: black;
+    padding: .75rem;
+    border-radius: .25rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.dropdown.active>.link+.dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.information-grid {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 2rem;
+}
+
+.dropdown-links {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+.login-form>input {
+    margin-bottom: .5rem;
+}
+
+
+
+/* display contents */
+
+#display {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 95%;
+    margin: 20px 10%;
+
+}
+
+#display div {
+    width: 70%;
+    padding: 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 10px;
+}
+
+#display div button {
+    border: 0ch;
+    padding: 5%;
+    background-color: #262626;
+    color: aliceblue;
+    border-radius: 5px;
+}
+
+/* form */
+
+#insert{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    width: 36%;
+    margin: auto;
+    gap: 8px;
+}
+
+#insert>input{
+    padding: 3%;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+
+#insert #sub{
+    margin-top: 4%;
+    background-color: black;
+    color: whitesmoke;
+    transition: 0.5s;
+}
+#insert #sub:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+p{
+    margin-top: 20px;
+    text-align: center;
+}
+

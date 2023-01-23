@@ -18,38 +18,17 @@ document, addEventListener("click", e => {
 
 // homepage, women, men, cart
 
-let access = localStorage.getItem("token");
-if (access) {
-    let women = document.querySelector("#women")
-    women.addEventListener("click", () => {
-        window.location.href = "womenclothing.html"
-    })
+let women = document.querySelector("#women")
+women.addEventListener("click", () => {
+    window.location.href = "admin.women.html"
+})
 
-    let men = document.querySelector("#men")
-    men.addEventListener("click", () => {
-        window.location.href = "menclothing.html"
-    })
+let men = document.querySelector("#men")
+men.addEventListener("click", () => {
+    window.location.href = "admin.men.html"
+})
 
-    let cart = document.querySelector("#cart")
-    cart.addEventListener("click", () => {
-        window.location.href = "cart.html"
-    })
-} else {
-    let women = document.querySelector("#women")
-    women.addEventListener("click", () => {
-        alert("Login to continue");
-    })
 
-    let men = document.querySelector("#men")
-    men.addEventListener("click", () => {
-        alert("Login to continue");
-    })
-
-    let cart = document.querySelector("#cart")
-    cart.addEventListener("click", () => {
-        alert("Login to continue");
-    })
-}
 
 let home = document.querySelector("#brand")
 home.addEventListener("click", () => {
@@ -57,50 +36,11 @@ home.addEventListener("click", () => {
 })
 
 
-// slide
-let count2 = 0;
-document.querySelector("#ltexarrow").onclick = () => {
-    console.log("clicked");
-
-    if (count2 == 0) {
-        return;
-    }
-    count2--;
-    let val = count2 * 260;
-    document.querySelector("#explore_container").style.transform = `translateX(-${val}px)`;
-};
-
-document.querySelector("#rtexarrow").onclick = () => {
-    if (count2 > 4) {
-        return;
-    }
-    count2++;
-    let val = count2 * 260;
-    document.querySelector("#explore_container").style.transform = `translateX(-${val}px)`;
-};
-
-// welcome
-let user_name = localStorage.getItem("user-name");
-if (user_name) {
-    let welcome = document.querySelector("#welcome")
-    welcome.innerHTML = `
-    <h2>Welcome back! MR/MS : ${user_name} </h2>
-    `
-} else {
-    let welcome = document.querySelector("#welcome")
-    welcome.innerHTML = `
-    <h2>Login to continue shopping</h2>
-    `
-}
-
-
 // login
 
 let form = document.querySelector("form")
-form.addEventListener("submit", getData)
-
-function getData(event) {
-    event.preventDefault();
+form.addEventListener("submit",(e)=>{
+    e.preventDefault();
 
     let obj = {
         email: form.email.value,
@@ -156,7 +96,108 @@ function getData(event) {
         alert("Enter all the details");
     }
 
+})
 
+// display
+
+let container = document.querySelector("#display");
+let userData = null;
+async function getData() {
+    let url = "http://localhost:8800/";
+    try {
+        let data = await fetch(`${url}women`, {
+            headers: {
+                "authorization": localStorage.getItem("token")
+            }
+        })
+        userData = await data.json();
+        console.log(userData)
+        displayCard(userData);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+getData()
+
+function displayCard(data) {
+    container.innerHTML = null;
+    data.forEach((elem, i) => {
+        let div = document.createElement("div");
+        div.innerHTML = `
+        <img width="100%" src=${elem.avatar} alt=${elem.name}/>
+        <h3>Name : ${elem.name}</h3>
+        <p>Price : $ ${elem.price}</p>
+        <p>Rating : ${elem.rating}</p>
+        <button class="butt" value="${elem._id}">Delete</button>
+        `
+        container.append(div);
+    })
+
+    let buttons = document.querySelectorAll(".butt");
+    for (let button of buttons) {
+        button.addEventListener("click", () => {
+            removeData(button.value);
+        })
+    }
+}
+
+// remove from cart
+
+async function removeData(id) {
+    try {
+        let res = await fetch(`http://localhost:8800/women/delete/${id}`, {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+                "authorization": localStorage.getItem("token")
+            }
+        })
+        let out = res.json();
+        //console.log(out);
+    } catch (error) {
+        console.log(error)
+    }
+
+    window.location.reload();
+}
+
+// add data
+
+let post=document.getElementById("insert");
+post.addEventListener("submit",addData);
+
+async function addData(e) {
+    e.preventDefault();
+    let form = document.querySelector("#insert");
+    let obj={
+        name:form.name.value,
+        avatar:form.avatar.value,
+        price:form.price.value,
+        rating:form.rating.value
+    }
+    console.log(obj);
+
+    let url = "http://localhost:8800/";
+    try {
+        let data = await fetch(`${url}women/create`, {
+            method:"POST",
+            headers: {
+                "content-type":"application/json",
+                "authorization": localStorage.getItem("token")
+            },
+            body:JSON.stringify(obj)
+        })
+
+        let res = data.json();
+        console.log(res);
+        
+        // displayCard(userData);
+    } catch (error) {
+        console.log(error);
+    }
+
+    window.location.reload();
 }
 
 //  register
@@ -165,6 +206,7 @@ let register = document.querySelector("#register")
 register.addEventListener("click", () => {
     window.location.href = "register.html";
 })
+
 
 // logout
 
@@ -182,10 +224,3 @@ if(localStorage.getItem("token")){
         alert("User has been logged out already");
     })
 }
-
-// admin page
-
-let admin = document.querySelector("#admin");
-admin.addEventListener("click",()=>{
-    window.location.href="admin-login.html";
-})

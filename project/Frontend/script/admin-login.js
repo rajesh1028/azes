@@ -23,14 +23,12 @@ function getData(event) {
     event.preventDefault();
 
     let obj = {
-        name: form.name.value,
-        email: form.email.value,
-        password: form.password.value,
-        age: form.age.value
+        email: form.mail.value,
+        password: form.password.value
     }
 
     let flag = true;
-    if (obj.name && obj.email && obj.password.length>4 && obj.age) {
+    if (obj.email && obj.password) {
         flag = true;
     } else {
         flag = false;
@@ -39,9 +37,9 @@ function getData(event) {
     if (flag) {
         async function post(){
             let url = "http://localhost:8800";
-            console.log(obj);
+            //console.log(obj);
             try {
-                let res = await fetch(`${url}/users/register`, {
+                let res = await fetch(`${url}/admin/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -49,23 +47,32 @@ function getData(event) {
                     body: JSON.stringify(obj)
                 })
                 let data = await res.json();
-                console.log(data);
-                console.log("registered");
+                //console.log(data);
+                console.log("logged in");
+
+                let user = await fetch(`${url}/users`);
+                let userData = await user.json();
+
+                let result = userData.filter((elem,i)=>{
+                    return obj.email==elem.email;
+                })
+
+                localStorage.setItem("admin-name",result[0].name)
 
                 setTimeout(()=>{
-                    window.location.href="login.html"
-                },2000);
-
+                    window.location.href="admin.html"
+                },2000)
 
             } catch (error) {
                 console.log(error);
+                console.log("Error in logging in");
             }
         }
         
         post();
 
     }else{
-        alert("Enter all the fields")
+        alert("Enter all the details");
     }
 
 
@@ -74,45 +81,25 @@ function getData(event) {
 
 // homepage, women, men, cart
 
-let access = localStorage.getItem("token");
-if (access) {
-    let women = document.querySelector("#women")
-    women.addEventListener("click", () => {
-        window.location.href = "womenclothing.html"
-    })
+let women = document.querySelector("#women")
+women.addEventListener("click", () => {
+    window.location.href = "admin.women.html"
+})
 
-    let men = document.querySelector("#men")
-    men.addEventListener("click", () => {
-        window.location.href = "menclothing.html"
-    })
+let men = document.querySelector("#men")
+men.addEventListener("click", () => {
+    window.location.href = "admin.men.html"
+})
 
-    let cart = document.querySelector("#cart")
-    cart.addEventListener("click", () => {
-        window.location.href = "cart.html"
-    })
-} else {
-    let women = document.querySelector("#women")
-    women.addEventListener("click", () => {
-        alert("Login to continue");
-    })
 
-    let men = document.querySelector("#men")
-    men.addEventListener("click", () => {
-        alert("Login to continue");
-    })
-
-    let cart = document.querySelector("#cart")
-    cart.addEventListener("click", () => {
-        alert("Login to continue");
-    })
-}
 
 let home = document.querySelector("#brand")
 home.addEventListener("click", () => {
     window.location.href = "index.html"
 })
 
-// register
+
+//  register
 
 let register = document.querySelector("#register")
 register.addEventListener("click",()=>{
