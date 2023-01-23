@@ -1,9 +1,10 @@
 const express = require("express");
-const { connection } = require("./configs/db");
+const { connection } = require("./configs/db")
 const { userRouter } = require("./routes/user.Route")
 const { menRouter } = require("./routes/men.Route")
 const { womenRouter } = require("./routes/women.Route")
-const { cartRouter } = require("./routes/cart.Route");
+const { cartRouter } = require("./routes/cart.Route")
+const { adminRouter } = require("./routes/admin.Route")
 const cors = require("cors");
 require("dotenv").config()
 const { authenticate } = require("./middlewares/authenticate.middleware");
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
     res.send("Home Page");
 })
 app.use("/users", userRouter);
+app.use("/admin", adminRouter);
 app.use(authenticate)
 
 app.use("/men", menRouter)

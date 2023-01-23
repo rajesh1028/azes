@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin login Page</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<body>
+    <div id="nav">
+        <div id="brand">AZES</div>
+        <div id="women">Women</div>
+        <div id="men">Men</div>
+        <div><input type="text" id="search"></div>
+        <div class="dropdown" data-dropdown>
+            <button class="link" data-dropdown-button>Login</button>
+            <div class="dropdown-menu">
+                <form class="login-form">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+        <div id="register"><span class="material-symbols-outlined">
+                person
+            </span></div>
+        <div id="logout"><span class="material-symbols-outlined">
+                logout
+            </span></div>
+        <div id="cart"><span class="material-symbols-outlined">
+                shopping_cart
+            </span></div>
+    </div>
+    <a href="index.html"><img id="home" src="./images/azes.crop.png" alt=""></a>
+    <p>Admin Login to Continue</p>
+    <form id="form">
+        Username
+        <input type="email" placeholder="Work Email" id="mail">
+        Password
+        <input type="password" placeholder="Password" id="password">
+        <input id="sub" type="submit" value="SIGN IN">
+    </form>
+    <p>New User? <a href="register.html">Sign Up</a></p>
+</body>
+<script src="./script/admin-login.js"></script>
+
+</html>

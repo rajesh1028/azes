@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+<body>
+    <div id="nav">
+        <div id="brand">AZES</div>
+        <div id="women">Women</div>
+        <div id="men">Men</div>
+        <div><input type="text" id="search"></div>
+        <div class="dropdown" data-dropdown>
+            <button class="link" data-dropdown-button>Login</button>
+            <div class="dropdown-menu">
+                <form class="login-form">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+        <div id="register"><span class="material-symbols-outlined">
+                person
+            </span></div>
+        <div id="logout"><span class="material-symbols-outlined">
+                logout
+            </span></div>
+        <div id="cart"><span class="material-symbols-outlined">
+                shopping_cart
+            </span></div>
+    </div>
+    <div id="sub-nav" class="header">
+        <div class="dropdown" data-dropdown>
+            <button class="link" data-dropdown-button>Information</button>
+            <div class="dropdown-menu information-grid">
+                <div>
+                    <div class="dropdown-heading">Free Tutorials</div>
+                    <div class="dropdown-links">
+                        <a href="#" class="link">All</a>
+                        <a href="#" class="link">Latest</a>
+                        <a href="#" class="link">Popular</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="dropdown-heading">Courses</div>
+                    <div class="dropdown-links">
+                        <a href="#" class="link">Javascript</a>
+                        <a href="#" class="link">CSS</a>
+                        <a href="#" class="link">React</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="dropdown-heading">BLOG</div>
+                    <div class="dropdown-links">
+                        <a href="#" class="link">All</a>
+                        <a href="#" class="link">Latest</a>
+                        <a href="#" class="link">Popular</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="dropdown-heading">Others</div>
+                    <div class="dropdown-links">
+                        <a href="#" class="link">Twitter</a>
+                        <a href="#" class="link">Newsletter</a>
+                        <a href="#" class="link">Discord</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="new-in">New-in</div>
+        <div id="clothing">Clothing</div>
+        <div id="dress">Dress</div>
+        <div id="shoes">Shoes</div>
+        <div id="activewear">Activewear</div>
+        <div id="brands">Brands</div>
+        <div id="accessories">Accessories</div>
+        <div id="winter">Winter</div>
+        <div id="toyshop">Toyshop</div>
+        <div id="outlet">Outlet</div>
+        <div id="marketplace">Marketplace</div>
+    </div>
+
+    <div id="display">
+        
+    </div>
+
+        <div id="register">
+            <form id="form">
+                <h2>Register</h2>
+                Name
+                <input type="text" placeholder="Name" id="name">
+                Email
+                <input type="email" placeholder="Work Email" id="email">
+                Password
+                <input type="password" placeholder="Password" id="password">
+                <input id="submit" type="submit" value="SIGN UP">
+            </form>
+        </div>
+
+</body>
+
+</html>
+
+<script src="./script/admin.js"></script>
