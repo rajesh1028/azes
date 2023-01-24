@@ -82,6 +82,7 @@ async function removeCart(id) {
             }
         })
         let out = res.json();
+        alert("Item removed from cart");
         //console.log(out);
     } catch (error) {
         console.log(error)

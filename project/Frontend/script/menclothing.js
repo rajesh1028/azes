@@ -203,6 +203,7 @@ async function addToCart(id) {
             body:JSON.stringify(data[0])
         })
         let out = res.json();
+        alert("Item added to cart");
         //console.log(out);
     } catch (error) {
         console.log(error)

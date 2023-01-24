@@ -48,22 +48,22 @@ function getData(event) {
                 })
                 let data = await res.json();
                 //console.log(data);
-                console.log("logged in");
-
-                let user = await fetch(`${url}/users`);
-                let userData = await user.json();
-
-                let result = userData.filter((elem,i)=>{
-                    return obj.email==elem.email;
-                })
-
-                localStorage.setItem("admin-name",result[0].name)
-
-                setTimeout(()=>{
-                    window.location.href="admin.html"
-                },2000)
+                    console.log("logged in");
+                    let user = await fetch(`${url}/users`);
+                    let userData = await user.json();
+    
+                    let result = userData.filter((elem,i)=>{
+                        return obj.email==elem.email;
+                    })
+    
+                    localStorage.setItem("admin-name",result[0].name)
+    
+                    setTimeout(()=>{
+                        window.location.href="admin.html"
+                    },2000)
 
             } catch (error) {
+                alert("Enter the correct credentials");
                 console.log(error);
                 console.log("Error in logging in");
             }

@@ -117,7 +117,7 @@ function getData(event) {
     if (flag) {
         async function post() {
             let url = "http://localhost:8800";
-            //console.log(obj);
+            console.log(obj);
             try {
                 let res = await fetch(`${url}/users/login`, {
                     method: 'POST',

@@ -135,4 +135,10 @@ async function removeCart(id) {
     window.location.reload();
 }
 
+// admin logout
 
+let logout = document.querySelector("#logout");
+logout.addEventListener("click",()=>{
+    localStorage.setItem("admin-name","");
+    window.location.href="index.html";
+})

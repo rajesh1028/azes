@@ -240,7 +240,7 @@ body {
 
 #display {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     width: 95%;
     margin: 20px 10%;
 
@@ -283,3 +283,13 @@ body {
     background-color: #adabab;
     color: whitesmoke;
 }
+
+@media (min-width:500px) and (max-width: 700px) {
+    #display {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 95%;
+        margin: 20px 10%;
+    
+    }
+  }

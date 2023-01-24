@@ -16,7 +16,7 @@ document, addEventListener("click", e => {
     })
 })
 
-let form = document.querySelector("form")
+let form = document.querySelector("#form")
 form.addEventListener("submit", getData)
 
 function getData(event) {
@@ -27,8 +27,10 @@ function getData(event) {
         password: form.password.value
     }
 
+    console.log(obj);
+
     let flag = true;
-    if (obj.email && obj.password) {
+    if (obj.email && obj.password.length>4) {
         flag = true;
     } else {
         flag = false;
@@ -37,7 +39,7 @@ function getData(event) {
     if (flag) {
         async function post(){
             let url = "http://localhost:8800";
-            //console.log(obj);
+            console.log(obj);
             try {
                 let res = await fetch(`${url}/users/login`, {
                     method: 'POST',
@@ -47,37 +49,28 @@ function getData(event) {
                     body: JSON.stringify(obj)
                 })
                 let data = await res.json();
-                //console.log(data);
-                localStorage.setItem("token",data.token)
-                console.log("logged in");
-
-                let user = await fetch(`${url}/users`);
-                let userData = await user.json();
-
-                let result = userData.filter((elem,i)=>{
-                    return obj.email==elem.email;
-                })
-
-                localStorage.setItem("user-name",result[0].name)
+                console.log(data);
+                console.log("Logged in");
 
                 setTimeout(()=>{
                     window.location.href="index.html"
-                },2000)
+                },2000);
+
 
             } catch (error) {
                 console.log(error);
-                console.log("Error in logging in");
             }
         }
         
         post();
 
     }else{
-        alert("Enter all the details");
+        alert("Enter all the fields")
     }
 
 
 }
+
 
 
 // homepage, women, men, cart
