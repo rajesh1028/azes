@@ -29,7 +29,7 @@ form.addEventListener("submit", (e) => {
     }
 
     async function post() {
-        let url = "http://localhost:8800";
+        let url = "https://lazy-red-leopard.cyclic.app";
         console.log(obj);
         try {
             let res = await fetch(`${url}/admin/register`, {
@@ -40,8 +40,8 @@ form.addEventListener("submit", (e) => {
                 body: JSON.stringify(obj)
             })
             let data = await res.json();
-            console.log(data);
-            console.log("registered");
+            // console.log(data);
+            alert("registered");
 
 
         } catch (error) {
@@ -78,7 +78,7 @@ home.addEventListener("click", () => {
 let container = document.querySelector("#display");
 let userData = null;
 async function getData() {
-    let url = "http://localhost:8800/";
+    let url = "https://lazy-red-leopard.cyclic.app/";
     try {
         let data = await fetch(`${url}admin`, {
             headers: {
@@ -86,7 +86,7 @@ async function getData() {
             }
         })
         userData = await data.json();
-        console.log(userData)
+        // console.log(userData)
         displayCard(userData);
     } catch (error) {
         console.log(error);
@@ -119,7 +119,7 @@ function displayCard(data) {
 
 async function removeCart(id) {
     try {
-        let res = await fetch(`http://localhost:8800/admin/delete/${id}`, {
+        let res = await fetch(`https://lazy-red-leopard.cyclic.app/admin/delete/${id}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json",
@@ -127,7 +127,6 @@ async function removeCart(id) {
             }
         })
         let out = res.json();
-        //console.log(out);
     } catch (error) {
         console.log(error)
     }

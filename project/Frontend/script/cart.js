@@ -25,7 +25,7 @@ document.querySelector("#rtexarrow").onclick = () => {
 let container = document.querySelector("#display");
 let userData = null;
 async function getData() {
-    let url = "http://localhost:8800/";
+    let url = "https://lazy-red-leopard.cyclic.app/";
     try {
         let data = await fetch(`${url}cart`, {
             headers: {
@@ -74,7 +74,7 @@ function displayCard(data) {
 
 async function removeCart(id) {
     try {
-        let res = await fetch(`http://localhost:8800/cart/delete/${id}`, {
+        let res = await fetch(`https://lazy-red-leopard.cyclic.app/cart/delete/${id}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json",

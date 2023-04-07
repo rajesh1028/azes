@@ -16,7 +16,7 @@ document, addEventListener("click", e => {
     })
 })
 
-let form = document.querySelector("form")
+let form = document.querySelector("#form")
 form.addEventListener("submit", getData)
 
 function getData(event) {
@@ -35,9 +35,8 @@ function getData(event) {
     }
 
     if (flag) {
-        async function post(){
-            let url = "http://localhost:8800";
-            //console.log(obj);
+        async function post() {
+            let url = "https://lazy-red-leopard.cyclic.app";
             try {
                 let res = await fetch(`${url}/users/login`, {
                     method: 'POST',
@@ -47,32 +46,28 @@ function getData(event) {
                     body: JSON.stringify(obj)
                 })
                 let data = await res.json();
-                //console.log(data);
-                localStorage.setItem("token",data.token)
-                console.log("logged in");
-
+                localStorage.setItem("token", data.token)
+                
                 let user = await fetch(`${url}/users`);
                 let userData = await user.json();
-
-                let result = userData.filter((elem,i)=>{
-                    return obj.email==elem.email;
+                
+                let result = userData.filter((elem, i) => {
+                    return obj.email == elem.email;
                 })
-
-                localStorage.setItem("user-name",result[0].name)
-
-                setTimeout(()=>{
-                    window.location.href="index.html"
-                },2000)
+                
+                localStorage.setItem("user-name", result[0].name)
+                alert("logged in successfully");
+                window.location.href = "index.html"
 
             } catch (error) {
                 console.log(error);
-                console.log("Error in logging in");
+                alert("Error in logging in");
             }
         }
-        
+
         post();
 
-    }else{
+    } else {
         alert("Enter all the details");
     }
 
@@ -124,21 +119,21 @@ home.addEventListener("click", () => {
 //  register
 
 let register = document.querySelector("#register")
-register.addEventListener("click",()=>{
-    window.location.href="register.html";
+register.addEventListener("click", () => {
+    window.location.href = "register.html";
 })
 
 // logout
 
-if(localStorage.getItem("token")){
+if (localStorage.getItem("token")) {
     let logout = document.querySelector("#logout")
     logout.addEventListener("click", () => {
         localStorage.setItem("token", "");
         localStorage.setItem("user-name", "");
         alert("User logged out successfully");
-        window.location.href="index.html";
+        window.location.href = "index.html";
     })
-}else{
+} else {
     let logout = document.querySelector("#logout")
     logout.addEventListener("click", () => {
         alert("User has been logged out already");

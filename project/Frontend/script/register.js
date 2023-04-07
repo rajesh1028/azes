@@ -30,15 +30,15 @@ function getData(event) {
     }
 
     let flag = true;
-    if (obj.name && obj.email && obj.password.length>4 && obj.age) {
+    if (obj.name && obj.email && obj.password.length > 4 && obj.age) {
         flag = true;
     } else {
         flag = false;
     }
 
     if (flag) {
-        async function post(){
-            let url = "http://localhost:8800";
+        async function post() {
+            let url = "https://lazy-red-leopard.cyclic.app";
             console.log(obj);
             try {
                 let res = await fetch(`${url}/users/register`, {
@@ -49,22 +49,18 @@ function getData(event) {
                     body: JSON.stringify(obj)
                 })
                 let data = await res.json();
-                console.log(data);
-                console.log("registered");
-
-                setTimeout(()=>{
-                    window.location.href="login.html"
-                },2000);
-
+                // console.log(data);
+                alert("registered successfully");
+                window.location.href = "login.html"
 
             } catch (error) {
                 console.log(error);
             }
         }
-        
+
         post();
 
-    }else{
+    } else {
         alert("Enter all the fields")
     }
 
@@ -115,21 +111,21 @@ home.addEventListener("click", () => {
 // register
 
 let register = document.querySelector("#register")
-register.addEventListener("click",()=>{
-    window.location.href="register.html";
+register.addEventListener("click", () => {
+    window.location.href = "register.html";
 })
 
 // logout
 
-if(localStorage.getItem("token")){
+if (localStorage.getItem("token")) {
     let logout = document.querySelector("#logout")
     logout.addEventListener("click", () => {
         localStorage.setItem("token", "");
         localStorage.setItem("user-name", "");
         alert("User logged out successfully");
-        window.location.href="index.html";
+        window.location.href = "index.html";
     })
-}else{
+} else {
     let logout = document.querySelector("#logout")
     logout.addEventListener("click", () => {
         alert("User has been logged out already");

@@ -25,7 +25,7 @@ document.querySelector("#rtexarrow").onclick = () => {
 let container = document.querySelector("#display");
 let userData = null;
 async function getData() {
-    let url = "http://localhost:8800/";
+    let url = "https://lazy-red-leopard.cyclic.app/";
     try {
         let data = await fetch(`${url}women`, {
             headers: {
@@ -73,7 +73,7 @@ async function addToCart(id) {
     })
     //console.log(data[0]);
     try {
-        let res = await fetch("http://localhost:8800/cart/create",{
+        let res = await fetch("https://lazy-red-leopard.cyclic.app/cart/create",{
             method:"POST",
             headers:{
                 "content-type":"application/json",
@@ -235,7 +235,7 @@ form.addEventListener("submit",(e)=>{
 
     if (flag) {
         async function post() {
-            let url = "http://localhost:8800";
+            let url = "https://lazy-red-leopard.cyclic.app";
             //console.log(obj);
             try {
                 let res = await fetch(`${url}/users/login`, {

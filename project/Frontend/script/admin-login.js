@@ -35,8 +35,8 @@ function getData(event) {
     }
 
     if (flag) {
-        async function post(){
-            let url = "http://localhost:8800";
+        async function post() {
+            let url = "https://lazy-red-leopard.cyclic.app";
             //console.log(obj);
             try {
                 let res = await fetch(`${url}/admin/login`, {
@@ -48,30 +48,28 @@ function getData(event) {
                 })
                 let data = await res.json();
                 //console.log(data);
-                console.log("logged in");
+
 
                 let user = await fetch(`${url}/users`);
                 let userData = await user.json();
 
-                let result = userData.filter((elem,i)=>{
-                    return obj.email==elem.email;
+                let result = userData.filter((elem, i) => {
+                    return obj.email == elem.email;
                 })
 
-                localStorage.setItem("admin-name",result[0].name)
-
-                setTimeout(()=>{
-                    window.location.href="admin.html"
-                },2000)
+                localStorage.setItem("admin-name", result[0].name)
+                alert("logged in successfully");
+                window.location.href = "admin.html"
 
             } catch (error) {
                 console.log(error);
-                console.log("Error in logging in");
+                alert("Error in logging in");
             }
         }
-        
+
         post();
 
-    }else{
+    } else {
         alert("Enter all the details");
     }
 
@@ -102,21 +100,21 @@ home.addEventListener("click", () => {
 //  register
 
 let register = document.querySelector("#register")
-register.addEventListener("click",()=>{
-    window.location.href="register.html";
+register.addEventListener("click", () => {
+    window.location.href = "register.html";
 })
 
 // logout
 
-if(localStorage.getItem("token")){
+if (localStorage.getItem("token")) {
     let logout = document.querySelector("#logout")
     logout.addEventListener("click", () => {
         localStorage.setItem("token", "");
         localStorage.setItem("user-name", "");
         alert("User logged out successfully");
-        window.location.href="index.html";
+        window.location.href = "index.html";
     })
-}else{
+} else {
     let logout = document.querySelector("#logout")
     logout.addEventListener("click", () => {
         alert("User has been logged out already");

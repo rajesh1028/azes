@@ -116,8 +116,7 @@ function getData(event) {
 
     if (flag) {
         async function post() {
-            let url = "http://localhost:8800";
-            //console.log(obj);
+            let url = "https://lazy-red-leopard.cyclic.app";
             try {
                 let res = await fetch(`${url}/users/login`, {
                     method: 'POST',
@@ -127,9 +126,7 @@ function getData(event) {
                     body: JSON.stringify(obj)
                 })
                 let data = await res.json();
-                //console.log(data);
                 localStorage.setItem("token", data.token)
-                console.log("logged in");
 
                 let user = await fetch(`${url}/users`);
                 let userData = await user.json();
@@ -140,13 +137,12 @@ function getData(event) {
 
                 localStorage.setItem("user-name", result[0].name)
 
-                setTimeout(() => {
-                    window.location.href = "index.html"
-                }, 2000)
+                alert("logged in successfully");
+                window.location.href = "index.html"
 
             } catch (error) {
                 console.log(error);
-                console.log("Error in logging in");
+                alert("Error in logging in");
             }
         }
 
@@ -168,15 +164,15 @@ register.addEventListener("click", () => {
 
 // logout
 
-if(localStorage.getItem("token")){
+if (localStorage.getItem("token")) {
     let logout = document.querySelector("#logout")
     logout.addEventListener("click", () => {
         localStorage.setItem("token", "");
         localStorage.setItem("user-name", "");
         alert("User logged out successfully");
-        window.location.href="index.html";
+        window.location.href = "index.html";
     })
-}else{
+} else {
     let logout = document.querySelector("#logout")
     logout.addEventListener("click", () => {
         alert("User has been logged out already");
@@ -186,6 +182,6 @@ if(localStorage.getItem("token")){
 // admin page
 
 let admin = document.querySelector("#admin");
-admin.addEventListener("click",()=>{
-    window.location.href="admin-login.html";
+admin.addEventListener("click", () => {
+    window.location.href = "admin-login.html";
 })
