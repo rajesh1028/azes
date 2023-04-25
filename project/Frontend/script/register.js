@@ -38,7 +38,7 @@ function getData(event) {
 
     if (flag) {
         async function post() {
-            let url = "https://lazy-red-leopard.cyclic.app";
+            let url = "https://busy-clam-drawers.cyclic.app";
             console.log(obj);
             try {
                 let res = await fetch(`${url}/users/register`, {

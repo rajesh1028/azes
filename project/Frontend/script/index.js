@@ -116,7 +116,7 @@ function getData(event) {
 
     if (flag) {
         async function post() {
-            let url = "https://lazy-red-leopard.cyclic.app";
+            let url = "https://busy-clam-drawers.cyclic.app";
             try {
                 let res = await fetch(`${url}/users/login`, {
                     method: 'POST',

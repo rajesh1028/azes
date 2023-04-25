@@ -56,7 +56,7 @@ form.addEventListener("submit",(e)=>{
 
     if (flag) {
         async function post() {
-            let url = "https://lazy-red-leopard.cyclic.app";
+            let url = "https://busy-clam-drawers.cyclic.app";
             //console.log(obj);
             try {
                 let res = await fetch(`${url}/users/login`, {
@@ -103,7 +103,7 @@ form.addEventListener("submit",(e)=>{
 let container = document.querySelector("#display");
 let userData = null;
 async function getData() {
-    let url = "https://lazy-red-leopard.cyclic.app/";
+    let url = "https://busy-clam-drawers.cyclic.app/";
     try {
         let data = await fetch(`${url}women`, {
             headers: {
@@ -146,7 +146,7 @@ function displayCard(data) {
 
 async function removeData(id) {
     try {
-        let res = await fetch(`https://lazy-red-leopard.cyclic.app/women/delete/${id}`, {
+        let res = await fetch(`https://busy-clam-drawers.cyclic.app/women/delete/${id}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json",
@@ -178,7 +178,7 @@ async function addData(e) {
     }
     console.log(obj);
 
-    let url = "https://lazy-red-leopard.cyclic.app/";
+    let url = "https://busy-clam-drawers.cyclic.app/";
     try {
         let data = await fetch(`${url}women/create`, {
             method:"POST",
